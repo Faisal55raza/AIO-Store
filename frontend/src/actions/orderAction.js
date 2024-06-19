@@ -12,7 +12,7 @@ export const createOrder = (order) => async(dispatch) => {
         try{
             const config = { headers : { "Content-Type" : "application/json" }, withCredentials: true, credentials: 'include'};
       
-        const { data }  = await axios.post("http://localhost:4000/api/v1/order/new",order,config);
+        const { data }  = await axios.post("https://aio-store.onrender.com/api/v1/order/new",order,config);
     
     
         dispatch({type: CREATE_ORDER_SUCCESS, payload : data.order})
@@ -31,7 +31,7 @@ export const myOrders = () => async (dispatch) => {
     try {
       dispatch({ type: MY_ORDER_REQUEST });
         
-      const { data } = await axios.get("http://localhost:4000/api/v1/orders/me", { withCredentials: true, credentials: 'include' });
+      const { data } = await axios.get("https://aio-store.onrender.com/api/v1/orders/me", { withCredentials: true, credentials: 'include' });
   
       dispatch({ type: MY_ORDER_SUCCESS, payload: data.order });
     } catch (error) {
@@ -46,7 +46,7 @@ export const myOrders = () => async (dispatch) => {
     try {
       dispatch({ type: ORDER_DETAILS_REQUEST });
     
-      const { data } = await axios.get(`http://localhost:4000/api/v1/order/${id}`);
+      const { data } = await axios.get(`https://aio-store.onrender.com/api/v1/order/${id}`);
      
       
       dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data.order });

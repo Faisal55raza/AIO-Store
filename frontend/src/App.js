@@ -46,7 +46,7 @@ function App() {
 
   async function getStripeApiKey() {
 
-    const { data }= await axios.get("http://localhost:4000/api/v1/stripeapikey");
+    const { data }= await axios.get("https://aio-store.onrender.com/api/v1/stripeapikey");
 
     setstripeApiKey(data.stripeApiKey);
   }  
