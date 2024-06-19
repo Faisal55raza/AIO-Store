@@ -9,7 +9,7 @@ const sendToken = (user, statusCode, res) => {
        Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
      ),
      sameSite: "none",
-     httpOnly: true,
+     domain : "https://aio-store-fawn.vercel.app",
      secure: true, 
    };
  
