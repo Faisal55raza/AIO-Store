@@ -2,7 +2,7 @@
 
 const sendToken = (user, statusCode, res) => {
    const token = user.getJWTToken();
- 
+   console.log(token)
    // options for cookie
    const options = {
     maxAge: 15 * 24 * 60 * 60 * 1000,
