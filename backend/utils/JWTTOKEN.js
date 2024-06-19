@@ -4,7 +4,7 @@ const sendToken = (user, statusCode, res) => {
    const token = user.getJWTToken();
  
    // options for cookie
-   const cookieOptions = {
+   const options = {
     maxAge: 15 * 24 * 60 * 60 * 1000,
     sameSite: "none",
     httpOnly: true,
