@@ -11,7 +11,7 @@ const cookieOptions = {
  
  const sendToken = (user,statusCode,res) => {
    const token = jwt.sign({ _id: user._id },"GUGVJHBKHBJHVGCFCYFCGHVJVGHVFCFCFCNGHGCHFC");
- 
+   console.log(token)
    return res.status(statusCode).cookie("token", token, cookieOptions).json({
      success: true,
      user,

@@ -7,7 +7,7 @@ const User = require("../models/userModel")
 
 exports.isAuthentication = catchAsyncErrors( async(req,res,next) => {
   
-    const { token } = req.cookies["token"];
+    const { token } = req.cookies;
    if(!token){
      return next(new ErrorHander("Please login to see this page",401))
    }
