@@ -12,7 +12,7 @@ dotenv.config({
     path:"backend/config/config.env"
 })
 app.use(cors({
-    origin:'http://localhost:3000',
+    origin:'https://aio-store-fawn.vercel.app',
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization", "credentials","withCredentials"],
     credentials: true
