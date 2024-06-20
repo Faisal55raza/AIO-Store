@@ -15,7 +15,7 @@ exports.isAuthentication = catchAsyncErrors( async(req,res,next) => {
   console.log(token)
   const decodedData = await jwt.verify(token,"GUGVJHBKHBJHVGCFCYFCGHVJVGHVFCFCFCNGHGCHFC");
   console.log(decodedData)
-  req.user = await User.findById(decodedData._id);
+  req.user = await User.findById(decodedData.id);
   console.log(req.user)
 
   next();
