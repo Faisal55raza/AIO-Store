@@ -151,7 +151,7 @@ sendToken(user,200,res);
 
 exports.getUserDetails = catchAsyncErrors( async(req,res,next) => {
 
-  const user = await User.findById(req.user.id);
+  const user = await User.findById(req.user._id);
 
   res.status(200).json({
     success:true,
@@ -162,7 +162,7 @@ exports.getUserDetails = catchAsyncErrors( async(req,res,next) => {
 
 exports.updatePassword = catchAsyncErrors( async(req,res,next) => {
 
-  const user = await User.findById(req.user.id).select("+password");
+  const user = await User.findById(req.user._id).select("+password");
 
   
   const isCorresctPassword = await user.comparePassword(req.body.oldPassword);
@@ -218,7 +218,7 @@ newUserData.avatar = {
 }
 }
 
-  const user = await User.findByIdAndUpdate(req.user.id, newUserData , {
+  const user = await User.findByIdAndUpdate(req.user._id, newUserData , {
     new:true,
     runValidators:true,
     useFindAndModify: false,
