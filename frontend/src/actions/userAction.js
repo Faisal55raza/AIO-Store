@@ -18,6 +18,10 @@ export const login = (email, password) => async(dispatch) => {
         const config = { headers : { "Content-Type" : "application/json" }, withCredentials: true, credentials: 'include'};
 
         const { data } = await axios.post(`https://aio-store.onrender.com/api/v1/login`,{email,password}, config ) ;
+        
+        document.cookie = `token=${data.token}; path=/; expires=Fri, 31 Dec 2024 23:59:59 GMT; Secure; SameSite=None`;
+
+
 
         dispatch({ type: LOGIN_SUCCESS, payload: data.user})
     }
