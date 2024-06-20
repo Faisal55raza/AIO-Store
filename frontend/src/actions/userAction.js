@@ -19,7 +19,13 @@ export const login = (email, password) => async(dispatch) => {
 
         const { data } = await axios.post(`https://aio-store.onrender.com/api/v1/login`,{email,password}, config ) ;
         
-        document.cookie = `token=${data.token}; path=/; expires=Fri, 31 Dec 2024 23:59:59 GMT; Secure; SameSite=None`;
+       if(data){
+        const date = new Date();
+            date.setDate(date.getDate() + 5);
+
+           
+            document.cookie = `token=${data.token}; path=/; expires=${date.toUTCString()}; Secure; SameSite=None`;
+       }
 
 
 
@@ -40,6 +46,14 @@ export const register = (userData) => async(dispatch) => {
 
        const config = { headers  : { "Content-Type" : "multipart/form-data"}};
        const { data } = await axios.post(`https://aio-store.onrender.com/api/v1/register`, userData , config);
+
+       if(data){
+        const date = new Date();
+            date.setDate(date.getDate() + 5);
+
+           
+            document.cookie = `token=${data.token}; path=/; expires=${date.toUTCString()}; Secure; SameSite=None`;
+       }
 
        dispatch({ type : REGISTER_USER_SUCCESS, payload: data.user });
     }
@@ -108,7 +122,13 @@ export const updatePassword = (passwords) => async(dispatch) => {
 
        const config = { headers  : { "Content-Type" : "application/form-data"}, withCredentials: true, credentials: 'include'};
        const { data } = await axios.put(`https://aio-store.onrender.com/api/v1/password/update`, passwords , config);
-       console.log(data);
+       if(data){
+        const date = new Date();
+            date.setDate(date.getDate() + 5);
+
+           
+            document.cookie = `token=${data.token}; path=/; expires=${date.toUTCString()}; Secure; SameSite=None`;
+       }
        dispatch({ type :UPDATE_PASSWORD_SUCCESS, payload: data.success });
     }
     catch (error) {
@@ -125,6 +145,14 @@ export const forgotPassword = (email) => async(dispatch) => {
 
         const { data } = await axios.post(`https://aio-store.onrender.com/api/v1/password/forgot`,email, config ) ;
 
+        if(data){
+            const date = new Date();
+                date.setDate(date.getDate() + 5);
+    
+               
+                document.cookie = `token=${data.token}; path=/; expires=${date.toUTCString()}; Secure; SameSite=None`;
+           }
+
         dispatch({ type: FORGOT_PASSWORD_SUCCESS , payload: data.message})
     }
 
@@ -139,6 +167,14 @@ export const resetPassword = (token,passwords) => async(dispatch) => {
         const config = { headers : { "Content-Type" : "application/json" }, withCredentials: true, credentials: 'include'};
        
         const { data } = await axios.put(`https://aio-store.onrender.com/api/v1/password/reset/${token}`,passwords , config ) ;
+
+        if(data){
+            const date = new Date();
+                date.setDate(date.getDate() + 5);
+    
+               
+                document.cookie = `token=${data.token}; path=/; expires=${date.toUTCString()}; Secure; SameSite=None`;
+           }
       
         dispatch({ type: RESET_PASSWORD_SUCCESS , payload: data.success})
     }
