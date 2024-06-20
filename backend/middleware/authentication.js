@@ -12,11 +12,12 @@ exports.isAuthentication = catchAsyncErrors( async(req,res,next) => {
   if (!token) {
     return next(new ErrorHander("Please Login to access this resource", 401));
   }
-
-  const decodedData = jwt.verify(token, process.env.JWT_SECRET);
+  try{
+  const decodedData = jwt.verify(token,"GUGVJHBKHBJHVGCFCYFCGHVJVGHVFCFCFCNGHGCHFC");
 
   req.user = await User.findById(decodedData._id);
-
+  }
+  catch(err){ console.log(err)}
   next();
 });
 
