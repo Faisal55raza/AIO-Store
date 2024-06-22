@@ -17,7 +17,7 @@ export const login = (email, password) => async(dispatch) => {
         dispatch({ type: LOGIN_REQUEST });
         const config = { headers : { "Content-Type" : "application/json" }, withCredentials: true, credentials: 'include'};
 
-        const { data } = await axios.post(`http://localhost:4000/api/v1/login`,{email,password}, config ) ;
+        const { data } = await axios.post(`https://aio-store.onrender.com/api/v1/login`,{email,password}, config ) ;
         
         if (data) {
             
@@ -42,7 +42,7 @@ export const register = (userData) => async(dispatch) => {
     
 
        const config = { headers  : { "Content-Type" : "multipart/form-data"}};
-       const { data } = await axios.post(`http://localhost:4000/api/v1/register`, userData , config);
+       const { data } = await axios.post(`https://aio-store.onrender.com/api/v1/register`, userData , config);
 
        if(data){
         const date = new Date();
@@ -80,7 +80,7 @@ export const loadUser = () => async (dispatch) => {
             credentials: 'include'
         };
 
-        const { data } = await axios.get(`http://localhost:4000/api/v1/me`, config);
+        const { data } = await axios.get(`https://aio-store.onrender.com/api/v1/me`, config);
         
         dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
     } catch (error) {
@@ -92,10 +92,8 @@ export const loadUser = () => async (dispatch) => {
 
 export const logout = () => async(dispatch) => {
     try{
-      
-      
-
-        await axios.get(`http://localhost:4000/api/v1/logout`, { withCredentials: true, credentials: 'include' }) ;
+    
+        await axios.get(`https://aio-store.onrender.com/api/v1/logout`, { withCredentials: true, credentials: 'include' }) ;
         localStorage.removeItem('token');
         dispatch({ type: LOGOUT_SUCCESS })
     }
@@ -125,7 +123,7 @@ export const updateProfile = (userData) => async(dispatch) => {
            withCredentials: true,
            credentials: 'include'
        };
-       const { data } = await axios.put(`http://localhost:4000/api/v1/me/update`, userData , config);
+       const { data } = await axios.put(`https://aio-store.onrender.com/api/v1/me/update`, userData , config);
     
        dispatch({ type :UPDATE_PROFILE_SUCCESS, payload: data.success });
     }
@@ -156,7 +154,7 @@ export const updatePassword = (passwords) => async(dispatch) => {
            withCredentials: true,
            credentials: 'include'
        };
-       const { data } = await axios.put(`http://localhost:4000/api/v1/password/update`, passwords , config);
+       const { data } = await axios.put(`https://aio-store.onrender.com/api/v1/password/update`, passwords , config);
        if(data){
         const date = new Date();
             date.setDate(date.getDate() + 5);
@@ -178,7 +176,7 @@ export const forgotPassword = (email) => async(dispatch) => {
         dispatch({ type: FORGOT_PASSWORD_REQUEST });
         const config = { headers : { "Content-Type" : "application/json" }, withCredentials: true, credentials: 'include'};
 
-        const { data } = await axios.post(`http://localhost:4000/api/v1/password/forgot`,email, config ) ;
+        const { data } = await axios.post(`https://aio-store.onrender.com/api/v1/password/forgot`,email, config ) ;
 
         if(data){
             const date = new Date();
@@ -201,7 +199,7 @@ export const resetPassword = (token,passwords) => async(dispatch) => {
         dispatch({ type: RESET_PASSWORD_REQUEST });
         const config = { headers : { "Content-Type" : "application/json" }, withCredentials: true, credentials: 'include'};
        
-        const { data } = await axios.put(`http://localhost:4000/api/v1/password/reset/${token}`,passwords , config ) ;
+        const { data } = await axios.put(`https://aio-store.onrender.com/api/v1/password/reset/${token}`,passwords , config ) ;
 
         if(data){
             const date = new Date();

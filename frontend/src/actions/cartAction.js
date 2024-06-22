@@ -5,7 +5,7 @@ import axios from "axios";
 
 export const addItemToCart = (id,quantity) => async(dispatch,getState) => {
     
-    const { data } = await axios.get(`http://localhost:4000/api/v1/admin/product/${id}`, { withCredentials: true, credentials: 'include' });
+    const { data } = await axios.get(`https://aio-store.onrender.com/api/v1/admin/product/${id}`, { withCredentials: true, credentials: 'include' });
     dispatch({
         type : ADD_TO_CART,
         payload : {

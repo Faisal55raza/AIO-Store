@@ -18,10 +18,10 @@ export const getProduct = (keyword="",currentPage = 1,price = [0,100000],categor
             type : ALL_PRODUCT_REQUEST
           });
           
-          let link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
+          let link = `https://aio-store.onrender.com/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
 
           if(category){
-            link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+            link = `https://aio-store.onrender.com/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
 
           }
          
@@ -62,7 +62,7 @@ export const getAdminProducts = ( ) => async (dispatch) => {
             credentials: 'include'
         };
 
-        const {data} = await axios.get(`http://localhost:4000/api/v1/admin/products`, config);
+        const {data} = await axios.get(`https://aio-store.onrender.com/api/v1/admin/products`, config);
       
         dispatch({
           type : ADMIN_PRODUCT_SUCCESS,
@@ -83,7 +83,7 @@ export const getProductDetails = (id) => async (dispatch) => {
           type : PRODUCT_DETAILS_REQUEST
         });
 
-        const {data} = await axios.get(`http://localhost:4000/api/v1/admin/product/${id}`);
+        const {data} = await axios.get(`https://aio-store.onrender.com/api/v1/admin/product/${id}`);
 
         dispatch({
           type : PRODUCT_DETAILS_SUCCESS,
@@ -117,7 +117,7 @@ export const createProduct = (productData) => async (dispatch) => {
             withCredentials: true,
             credentials: 'include'
         };
-        const {data} = await axios.post(`http://localhost:4000/api/v1/admin/product/new`,productData,config);
+        const {data} = await axios.post(`https://aio-store.onrender.com/api/v1/admin/product/new`,productData,config);
         console.log(data)
         dispatch({
           type : NEW_PRODUCT_SUCCESS,
@@ -151,7 +151,7 @@ export const deleteProduct = (id) => async (dispatch) => {
         credentials: 'include'
     };
 
-    const { data } = await axios.delete(`http://localhost:4000/api/v1/admin/product/${id}`,config);
+    const { data } = await axios.delete(`https://aio-store.onrender.com/api/v1/admin/product/${id}`,config);
     
     dispatch({
       type: DELETE_PRODUCT_SUCCESS,
@@ -184,7 +184,7 @@ export const newReview = (reviewData) => async (dispatch) => {
             withCredentials: true,
             credentials: 'include'
         };
-        const {data} = await axios.put(`http://localhost:4000/api/v1/review`,reviewData,config);
+        const {data} = await axios.put(`https://aio-store.onrender.com/api/v1/review`,reviewData,config);
 
         dispatch({
           type : NEW_REVIEW_SUCCESS,
