@@ -96,7 +96,7 @@ export const logout = () => async(dispatch) => {
       
 
         await axios.get(`http://localhost:4000/api/v1/logout`, { withCredentials: true, credentials: 'include' }) ;
-
+        localStorage.removeItem('token');
         dispatch({ type: LOGOUT_SUCCESS })
     }
 
