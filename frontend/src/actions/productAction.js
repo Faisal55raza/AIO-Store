@@ -6,7 +6,8 @@ import { ALL_PRODUCT_FAIL,ALL_PRODUCT_REQUEST,ALL_PRODUCT_SUCCESS,
          ADMIN_PRODUCT_REQUEST,ADMIN_PRODUCT_SUCCESS,ADMIN_PRODUCT_FAIL,
          NEW_PRODUCT_REQUEST,NEW_PRODUCT_SUCCESS,NEW_PRODUCT_FAIL,
          DELETE_PRODUCT_FAIL,DELETE_PRODUCT_REQUEST,DELETE_PRODUCT_SUCCESS} from "../constants/productConstants";
-
+         
+import { LOAD_USER_FAIL } from "../constants/userConstan";
 
 export const getProduct = (keyword="",currentPage = 1,price = [0,100000],category,ratings=0) => async (dispatch) => {
   if(!keyword){
@@ -17,10 +18,10 @@ export const getProduct = (keyword="",currentPage = 1,price = [0,100000],categor
             type : ALL_PRODUCT_REQUEST
           });
           
-          let link = `https://aio-store.onrender.com/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
+          let link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
 
           if(category){
-            link = `https://aio-store.onrender.com/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+            link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
 
           }
          
@@ -46,7 +47,22 @@ export const getAdminProducts = ( ) => async (dispatch) => {
           type : ADMIN_PRODUCT_REQUEST
         });
 
-        const {data} = await axios.get(`https://aio-store.onrender.com/api/v1/admin/products`, { withCredentials: true, credentials: 'include' });
+        const token = localStorage.getItem('token');
+        if (!token) {
+            dispatch({ type: LOAD_USER_FAIL, payload: "Please login" });
+            return;
+        }
+        
+        const config = {
+            headers: { 
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            withCredentials: true,
+            credentials: 'include'
+        };
+
+        const {data} = await axios.get(`http://localhost:4000/api/v1/admin/products`, config);
       
         dispatch({
           type : ADMIN_PRODUCT_SUCCESS,
@@ -67,7 +83,7 @@ export const getProductDetails = (id) => async (dispatch) => {
           type : PRODUCT_DETAILS_REQUEST
         });
 
-        const {data} = await axios.get(`https://aio-store.onrender.com/api/v1/admin/product/${id}`);
+        const {data} = await axios.get(`http://localhost:4000/api/v1/admin/product/${id}`);
 
         dispatch({
           type : PRODUCT_DETAILS_SUCCESS,
@@ -87,8 +103,21 @@ export const createProduct = (productData) => async (dispatch) => {
         dispatch({
           type : NEW_PRODUCT_REQUEST
         });
-        const config = { headers : { "Content-Type" : "application/json" }, withCredentials: true, credentials: 'include' };
-        const {data} = await axios.post(`https://aio-store.onrender.com/api/v1/admin/product/new`,productData,config);
+        const token = localStorage.getItem('token');
+        if (!token) {
+            dispatch({ type: LOAD_USER_FAIL, payload: "Please login" });
+            return;
+        }
+        
+        const config = {
+            headers: { 
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            withCredentials: true,
+            credentials: 'include'
+        };
+        const {data} = await axios.post(`http://localhost:4000/api/v1/admin/product/new`,productData,config);
         console.log(data)
         dispatch({
           type : NEW_PRODUCT_SUCCESS,
@@ -107,7 +136,22 @@ export const deleteProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
 
-    const { data } = await axios.delete(`https://aio-store.onrender.com/api/v1/admin/product/${id}`,{ withCredentials: true, credentials: 'include' });
+    const token = localStorage.getItem('token');
+    if (!token) {
+        dispatch({ type: LOAD_USER_FAIL, payload: "Please login" });
+        return;
+    }
+    
+    const config = {
+        headers: { 
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+        withCredentials: true,
+        credentials: 'include'
+    };
+
+    const { data } = await axios.delete(`http://localhost:4000/api/v1/admin/product/${id}`,config);
     
     dispatch({
       type: DELETE_PRODUCT_SUCCESS,
@@ -126,8 +170,21 @@ export const newReview = (reviewData) => async (dispatch) => {
         dispatch({
           type : NEW_REVIEW_REQUEST
         });
-        const config = { headers : { "Content-Type" : "application/json" }, withCredentials: true, credentials: 'include' };
-        const {data} = await axios.put(`https://aio-store.onrender.com/api/v1/review`,reviewData,config);
+        const token = localStorage.getItem('token');
+        if (!token) {
+            dispatch({ type: LOAD_USER_FAIL, payload: "Please login" });
+            return;
+        }
+        
+        const config = {
+            headers: { 
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            withCredentials: true,
+            credentials: 'include'
+        };
+        const {data} = await axios.put(`http://localhost:4000/api/v1/review`,reviewData,config);
 
         dispatch({
           type : NEW_REVIEW_SUCCESS,
