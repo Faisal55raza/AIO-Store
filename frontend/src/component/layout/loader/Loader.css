@@ -16,7 +16,10 @@
   
     animation: loadingRotate 800ms linear infinite;
   }
-  
+  .Heading{
+    margin-top:-1em;
+    color: rgb(69, 64, 64);
+  }
   @keyframes loadingRotate {
     to {
       transform: rotateZ(-360deg);
