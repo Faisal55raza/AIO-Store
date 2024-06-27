@@ -61,7 +61,7 @@ const Payment = () => {
         },
       };
       const { data } = await axios.post(
-        "https://aio-store.onrender.com/api/v1/payment/process",
+        "https://aio-backend.vercel.app/api/v1/payment/process",
         paymentData,
         config
       );

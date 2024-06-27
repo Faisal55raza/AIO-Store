@@ -26,7 +26,7 @@ export const createOrder = (order) => async(dispatch) => {
             credentials: 'include'
         };
       
-        const { data }  = await axios.post("https://aio-store.onrender.com/api/v1/order/new",order,config);
+        const { data }  = await axios.post("https://aio-backend.vercel.app/api/v1/order/new",order,config);
     
     
         dispatch({type: CREATE_ORDER_SUCCESS, payload : data.order})
@@ -53,7 +53,7 @@ export const myOrders = () => async (dispatch) => {
           credentials: 'include'
       };
 
-      const { data } = await axios.get("https://aio-store.onrender.com/api/v1/orders/me", config);
+      const { data } = await axios.get("https://aio-backend.vercel.app/api/v1/orders/me", config);
 
       dispatch({ type: MY_ORDER_SUCCESS, payload: data.order });
   } catch (error) {
@@ -81,7 +81,7 @@ export const myOrders = () => async (dispatch) => {
           credentials: 'include'
       };
     
-      const { data } = await axios.get(`https://aio-store.onrender.com/api/v1/order/${id}`,config);
+      const { data } = await axios.get(`https://aio-backend.vercel.app/api/v1/order/${id}`,config);
      
       
       dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data.order });
