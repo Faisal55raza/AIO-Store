@@ -21,6 +21,11 @@
     margin: auto;
   }
   
+  .alertMessage{
+    display: inline;
+    font-size: small !important;
+    color: red !important;
+  }
   .paymentForm > div {
     display: flex;
     align-items: center;
@@ -63,6 +68,9 @@
   @media screen and (max-width: 600px) {
     .paymentForm {
       width: 90%;
+    }
+    .paymentContainer{
+      height: 100vh;
     }
   
     .paymentForm > p {

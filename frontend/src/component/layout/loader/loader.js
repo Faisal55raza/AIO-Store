@@ -5,7 +5,7 @@ const Loader = () => {
   return (
     <div className="loading">
       <div></div>
-      <h1 className="Heading">Please wait for atleast 20s as it is hosted on free service</h1>
+      <h1 className="Heading">Please wait for atleast 20s <br /> as this is hosted on free service</h1>
     </div>
   );
 };

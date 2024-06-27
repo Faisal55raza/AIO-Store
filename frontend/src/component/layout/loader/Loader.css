@@ -17,8 +17,9 @@
     animation: loadingRotate 800ms linear infinite;
   }
   .Heading{
-    margin-top:-1em;
+    margin-top:-20rem;
     color: rgb(69, 64, 64);
+    text-align: center;
   }
   @keyframes loadingRotate {
     to {

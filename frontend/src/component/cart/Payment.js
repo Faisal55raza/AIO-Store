@@ -11,7 +11,6 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-
 import axios from "axios";
 import "./Payment.css";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
@@ -57,7 +56,8 @@ const Payment = () => {
       const config = {
         headers: {
           "Content-Type": "application/json",
-          withCredentials: true, credentials: 'include' 
+          withCredentials: true,
+          credentials: 'include' 
         },
       };
       const { data } = await axios.post(
@@ -89,9 +89,7 @@ const Payment = () => {
 
       if (result.error) {
         payBtn.current.disabled = false;
-      
         alert.error(result.error.message);
-       
       } else {
         if (result.paymentIntent.status === "succeeded") {
           order.paymentInfo = {
@@ -100,10 +98,9 @@ const Payment = () => {
           };
 
           dispatch(createOrder(order));
-
           navigate("/success");
         } else {
-          alert.error("There's some issue while processing payment ");
+          alert.error("There's some issue while processing payment");
         }
       }
     } catch (error) {
@@ -119,6 +116,54 @@ const Payment = () => {
     }
   }, [dispatch, error, alert]);
 
+  const cardElementOptions = {
+    style: {
+      base: {
+        fontSize: "16px",
+        color: "#424770",
+        "::placeholder": {
+          color: "#aab7c4",
+        },
+      },
+      invalid: {
+        color: "#9e2146",
+      },
+    },
+    placeholder: "4242 4242 4242 4242",  // Example placeholder for CardNumberElement
+  };
+
+  const cardExpiryElementOptions = {
+    style: {
+      base: {
+        fontSize: "16px",
+        color: "#424770",
+        "::placeholder": {
+          color: "#aab7c4",
+        },
+      },
+      invalid: {
+        color: "#9e2146",
+      },
+    },
+    placeholder: "10/26",  // Example placeholder for CardExpiryElement
+  };
+
+  const cardCvcElementOptions = {
+    style: {
+      base: {
+        fontSize: "16px",
+        color: "#424770",
+        "::placeholder": {
+          color: "#aab7c4",
+        },
+      },
+      invalid: {
+        color: "#9e2146",
+      },
+    },
+    placeholder: "124",  // Example placeholder for CardCvcElement
+  };
+
   return (
     <Fragment>
       <MetaData title="Payment" />
@@ -126,17 +171,28 @@ const Payment = () => {
       <div className="paymentContainer">
         <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
           <Typography>Card Info</Typography>
+          <p  className="alertMessage">If you are guest then enter the no. as shown in input.</p>
           <div>
+          
             <CreditCardIcon />
-            <CardNumberElement className="paymentInput" />
+            <CardNumberElement
+              className="paymentInput"
+              options={cardElementOptions}
+            />
           </div>
           <div>
             <EventIcon />
-            <CardExpiryElement className="paymentInput" />
+            <CardExpiryElement
+              className="paymentInput"
+              options={cardExpiryElementOptions}
+            />
           </div>
           <div>
             <VpnKeyIcon />
-            <CardCvcElement className="paymentInput" />
+            <CardCvcElement
+              className="paymentInput"
+              options={cardCvcElementOptions}
+            />
           </div>
 
           <input
