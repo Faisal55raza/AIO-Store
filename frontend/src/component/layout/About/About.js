@@ -5,12 +5,14 @@ import github from "./github.png"
 import linkedin from "./linkedin.png"
 import faisal from "./faisal.png"
 import leetcode from "./code.png"
+import MetaData from "../MetaData";
 
 const About = () => {
   const visitPortfolio = () => {
     window.location = "https://celadon-wisp-33266b.netlify.app/";
   };
   return (
+   
     <div className="aboutSection">
       <div></div>
       <div className="aboutSectionGradient"></div>

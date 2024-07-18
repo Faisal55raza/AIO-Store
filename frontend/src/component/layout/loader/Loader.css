@@ -26,6 +26,7 @@
       transform: rotateZ(-360deg);
     }
   } */
+
    .loader-box{
     
     height: 50vmax;
@@ -81,6 +82,12 @@
                 -35px 50px 0 rgb(48,48,48),
                 -70px 90px 0 rgb(48,48,48),
                 -70px 90px 0 rgba(0,0,0,0);
+    }
+  }
+
+  @media screen and (max-width: 600px){
+    .loader-box{
+      margin-left:25vmax;
     }
   }
 

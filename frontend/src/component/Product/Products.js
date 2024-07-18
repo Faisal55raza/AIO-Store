@@ -9,6 +9,7 @@ import Pagination from "react-js-pagination";
 import Slider from "@material-ui/core/Slider";
 import { useAlert } from "react-alert";
 import Typography from "@material-ui/core/Typography";
+import MetaData from "../layout/MetaData";
 
 
 const categories = [
@@ -75,6 +76,7 @@ const Products = () =>{
             {loading ? (
                 <Loader />
             ) :(<Fragment>
+              <MetaData title={"PRODUCTS"} />
               <div className="flex flex-column fillter overflow-auto fixed  z-10  right-2" >
       
       {isOpen && (

@@ -9,6 +9,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userAction";
 import { useAlert } from "react-alert";
 import {useNavigate,useLocation} from "react-router-dom";
+import MetaData from "../layout/MetaData";
 import p from "../User/Profile.png"
 
 const LoginSignUp = () => {
@@ -114,6 +115,7 @@ const LoginSignUp = () => {
         <Loader />
       ) : (
         <Fragment>
+        <MetaData title={"LOGIN SIGNUP"} />
           <div className="LoginSignUpContainer">
             <div className="LoginSignUpBox shadow-xl">
               <div>
