@@ -31,8 +31,7 @@ const About = () => {
               Visit My PortFolio
             </Button>
             <span>
-              This is a sample wesbite made by @meabhisingh. Only with the
-              purpose to teach MERN Stack on the channel 6 Pack Programmer
+              Hi, this is Faisal if you liked this website feel free to like my repo or want to connect? send me connection request throgh LinkedIn.
             </span>
           </div>
           <div className="aboutSectionContainer2">
